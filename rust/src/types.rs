@@ -379,8 +379,10 @@ impl TypeBuilder {
         //! For simplicity's sake, that convention isn't followed and you can query the default_int_size from an arch, if you have it, if you need to
 
         unsafe {
+            // TODO : This is _extremely fragile_, we should change the internals of BNCreateEnumerationTypeBuilder instead of doing this
+            let mut fake_arch: BNArchitecture = mem::zeroed();
             Self::from_raw(BNCreateEnumerationTypeBuilder(
-                ptr::null_mut(),
+                &mut fake_arch,
                 enumeration.handle,
                 width,
                 is_signed,
@@ -724,8 +726,10 @@ impl Type {
         //! For simplicity's sake, that convention isn't followed and you can query the default_int_size from an arch, if you have it, if you need to
 
         unsafe {
+            // TODO : This is _extremely fragile_, we should change the internals of BNCreateEnumerationType instead of doing this
+            let mut fake_arch: BNArchitecture = mem::zeroed();
             Self::ref_from_raw(BNCreateEnumerationType(
-                ptr::null_mut(),
+                &mut fake_arch,
                 enumeration.handle,
                 width,
                 is_signed,
