@@ -5169,6 +5169,7 @@ __attribute__ ((format (printf, 1, 2)))
 		bool IsDisablePending() const;
 		bool IsDeletePending() const;
 		bool IsUpdateAvailable() const;
+		bool AreDependenciesBeingInstalled() const;
 
 		bool Uninstall();
 		bool Install();
